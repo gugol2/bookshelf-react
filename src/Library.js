@@ -21,6 +21,7 @@ export const Library = (props) => {
                         <Bookshelf 
                             bookshelfName={key}
                             booksInThisShelf={value}
+                            key={key}
                         />
                     ))}
                 </div>

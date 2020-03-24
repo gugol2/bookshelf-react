@@ -1,7 +1,8 @@
 import React from 'react'
 
 export const Library = (props) => {
-
+    console.log('books received', props.books);
+    
     return (
         <div className="list-books">
             <div className="list-books-title">

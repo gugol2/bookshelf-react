@@ -159,7 +159,7 @@ export const Library = (props) => {
                 </div>
             </div>
             <div className="open-search">
-                <button onClick={props.onShowLibraryPage}>Add a book</button>
+                <button onClick={props.onToggleView}>Add a book</button>
             </div>
         </div>
     )

@@ -15,7 +15,7 @@ class BooksApp extends React.Component {
     showSearchPage: false
   }
 
-  onShowLibraryPage = () => {
+  onToggleView = () => {
     this.setState((currentState) => ({
       showSearchPage: !currentState.showSearchPage
     }));
@@ -25,9 +25,9 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <Search onShowLibraryPage={this.onShowLibraryPage}/>
+          <Search onToggleView={this.onToggleView}/>
         ) : (
-          <Library onShowLibraryPage={this.onShowLibraryPage}/>
+          <Library onToggleView={this.onToggleView}/>
         )}
       </div>
     )

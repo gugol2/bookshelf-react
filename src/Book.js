@@ -6,7 +6,9 @@ export class Book extends React.Component {
     }
 
     changeShelf = (event) => {
+        event.preventDefault();
         const shelf = event.target.value;
+
         this.setState(() => ({
             shelf
         }))
@@ -14,11 +16,14 @@ export class Book extends React.Component {
 
     render() {
         const { title, authors, imageLinks } = this.props.book;
-        debugger;
+
         return (
             <div className="book">
                 <div className="book-top">
-                <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}></div>
+                <div 
+                    className="book-cover" 
+                    style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}>
+                </div>
                 <div className="book-shelf-changer">
                     <select value={this.state.shelf} onChange={this.changeShelf} >
                         <option value="move" disabled>Move to...</option>

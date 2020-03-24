@@ -9,6 +9,11 @@ export const Library = (props) => {
     }, {});
 
     console.log('shelves is:', shelves);
+
+    const moveBook = (book, shelf) => {
+        console.log('book', book);
+        console.log('shelf', shelf);
+    }
     
     return (
         <div className="list-books">
@@ -22,6 +27,7 @@ export const Library = (props) => {
                             bookshelfName={key}
                             booksInThisShelf={value}
                             key={key}
+                            moveBook={moveBook}
                         />
                     ))}
                 </div>

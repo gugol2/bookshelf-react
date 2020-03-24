@@ -9,6 +9,10 @@ export const Bookshelf = (props) => {
         return `${bookshelfNameReadyString.charAt(0).toUpperCase()}${bookshelfNameReadyString.slice(1)}`
     }
 
+    const moveBook = (book, shelf) => {
+        props.moveBook(book, shelf);
+    }
+
     return (
         <div className="bookshelf">
             <h2 className="bookshelf-title">{bookshelfNameReady()}</h2>
@@ -18,6 +22,7 @@ export const Bookshelf = (props) => {
                         <li key={bookITS.id}>
                             <Book 
                                 book={bookITS}
+                                moveBook={moveBook}
                             />
                         </li>
                     ))}

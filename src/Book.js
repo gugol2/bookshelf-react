@@ -12,6 +12,8 @@ export class Book extends React.Component {
         this.setState(() => ({
             shelf
         }))
+
+        this.props.moveBook(this.props.book, shelf);
     }
 
     render() {

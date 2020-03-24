@@ -8,15 +8,15 @@ export const Bookshelf = (props) => {
         <div className="bookshelf">
             <h2 className="bookshelf-title">{bookshelfName}</h2>
             <div className="bookshelf-books">
-            <ol className="books-grid">
-                {booksInThisShelf.map(bookITS => (
-                    <Book 
-                        title={bookITS.title}
-                        authors={bookITS.authors}
-                        imageLinks={bookITS.imageLinks}
-                    />
-                ))}
-            </ol>
+                <ol className="books-grid">
+                    {booksInThisShelf.map(bookITS => (
+                        <Book 
+                            title={bookITS.title}
+                            authors={bookITS.authors}
+                            imageLinks={bookITS.imageLinks}
+                        />
+                    ))}
+                </ol>
             </div>
         </div>
     )

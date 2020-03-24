@@ -17,9 +17,7 @@ export const Bookshelf = (props) => {
                     {booksInThisShelf.map(bookITS => (
                         <li key={bookITS.id}>
                             <Book 
-                                title={bookITS.title}
-                                authors={bookITS.authors}
-                                imageLinks={bookITS.imageLinks}
+                                book={bookITS}
                             />
                         </li>
                     ))}

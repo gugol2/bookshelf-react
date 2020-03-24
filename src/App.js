@@ -30,6 +30,13 @@ class BooksApp extends React.Component {
     }));
   }
 
+  moveBook = (book, shelf) => {
+    console.log('book', book);
+    console.log('shelf', shelf);
+    
+    BooksAPI.update(book, shelf);
+  }
+
   render() {
     console.log('books passed', this.state.books);
 
@@ -41,6 +48,7 @@ class BooksApp extends React.Component {
           <Library 
             onToggleView={this.onToggleView}
             books={this.state.books}
+            onMoveBook={this.moveBook}
           />
         )}
       </div>

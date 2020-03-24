@@ -11,8 +11,7 @@ export const Library = (props) => {
     console.log('shelves is:', shelves);
 
     const moveBook = (book, shelf) => {
-        console.log('book', book);
-        console.log('shelf', shelf);
+        props.onMoveBook(book, shelf);
     }
     
     return (

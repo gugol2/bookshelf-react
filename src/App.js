@@ -33,7 +33,7 @@ class BooksApp extends React.Component {
   moveBook = (book, shelf) => {
     console.log('book', book);
     console.log('shelf', shelf);
-    
+
     BooksAPI.update(book, shelf);
   }
 
@@ -43,7 +43,10 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <Search onToggleView={this.onToggleView}/>
+          <Search 
+            onToggleView={this.onToggleView}
+            books={this.state.books}
+          />
         ) : (
           <Library 
             onToggleView={this.onToggleView}

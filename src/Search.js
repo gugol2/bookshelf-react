@@ -14,16 +14,19 @@ export class Search extends React.Component {
         const query = event.target.value.trim();
         console.log("query", query);
 
-        BooksAPI.search(query).then(books => {
-            // const aver = books.filter(b => !b.authors);
-
-            // console.log('aver', aver);
-
+        if(query !== '') {
+            BooksAPI.search(query).then(books => {
+                this.setState(() => ({
+                    books,
+                    query: query
+                }));
+            });
+        } else {
             this.setState(() => ({
-                books,
+                books: [],
                 query: query
             }));
-        })
+        }
 
     }
 

@@ -18,7 +18,7 @@ export class Search extends React.Component {
     }
 
     moveBook = (book, shelf) => {
-        this.props.moveBook(book, shelf);
+        this.props.onMoveBook(book, shelf);
     }
 
     render () {

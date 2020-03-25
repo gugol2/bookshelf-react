@@ -3,12 +3,13 @@ import { Bookshelf } from './Bookshelf';
 
 export const Library = (props) => {
     console.log('books received', props.books);
+
     const shelves = props.books.reduce((acc, cur) => {
         acc[cur.shelf] = [...acc[cur.shelf] || [], cur];
         return acc
     }, {});
 
-    console.log('shelves is:', shelves);
+    console.log('shelves NOW is:', shelves);
 
     const moveBook = (book, shelf) => {
         props.onMoveBook(book, shelf);

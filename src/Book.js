@@ -17,7 +17,9 @@ export class Book extends React.Component {
     }
 
     render() {
+        debugger;
         const { title, authors, imageLinks } = this.props.book;
+        console.log('authors', authors);
 
         return (
             <div className="book">
@@ -37,7 +39,7 @@ export class Book extends React.Component {
                 </div>
                 </div>
                 <div className="book-title">{title}</div>
-                <div className="book-authors">{authors[0]}</div>
+                <div className="book-authors">{authors}</div>
             </div>
         )
     }

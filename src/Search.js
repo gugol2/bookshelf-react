@@ -1,9 +1,11 @@
 import React from 'react';
 import { Book } from './Book';
+import * as BooksAPI from './BooksAPI';
 
 export class Search extends React.Component {
     state = {
         query: '',
+        books: []
     }
 
     updateQuery = (event) => {
@@ -12,9 +14,17 @@ export class Search extends React.Component {
         const query = event.target.value.trim();
         console.log("query", query);
 
-        this.setState(() => ({
-            query: query
-        }));
+        BooksAPI.search(query).then(books => {
+            // const aver = books.filter(b => !b.authors);
+
+            // console.log('aver', aver);
+
+            this.setState(() => ({
+                books,
+                query: query
+            }));
+        })
+
     }
 
     moveBook = (book, shelf) => {
@@ -22,13 +32,13 @@ export class Search extends React.Component {
     }
 
     render () {
-        const { onToggleView, books } = this.props;
-        const { query } = this.state;
+        const { onToggleView } = this.props;
+        const { query, books } = this.state;
 
-        const filteredBooks = books.filter(book => 
-            book.title.toLowerCase().includes(query.toLowerCase()) || 
-            book.authors[0].toLowerCase().includes(query.toLowerCase())
-        );
+        // const filteredBooks = books.filter(book => 
+        //     book.title.toLowerCase().includes(query.toLowerCase()) || 
+        //     book.authors[0].toLowerCase().includes(query.toLowerCase())
+        // );
 
         return (
             <div className="search-books">
@@ -55,7 +65,7 @@ export class Search extends React.Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {filteredBooks.map(book => (
+                        {books.map(book => (
                             <li key={book.id}>
                                 <Book 
                                     book={book}

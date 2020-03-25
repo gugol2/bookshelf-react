@@ -30,6 +30,10 @@ export class Search extends React.Component {
                     books,
                 }));
             }
+        }).catch(error => {
+            this.setState(() => ({
+                books: []
+            })); 
         })
     }
 

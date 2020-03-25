@@ -1,24 +1,34 @@
-import React from 'react'
+import React from 'react';
+import { Book } from './Book';
 
 export class Search extends React.Component {
     state = {
-        query: ''
+        query: '',
     }
 
     updateQuery = (event) => {
         event.preventDefault();
-        debugger;
 
-        const query = event.target.value;
+        const query = event.target.value.trim();
         console.log("query", query);
 
         this.setState(() => ({
-            query
+            query: query
         }));
     }
 
+    moveBook = (book, shelf) => {
+        this.props.moveBook(book, shelf);
+    }
+
     render () {
-        const { onToggleView } = this.props;
+        const { onToggleView, books } = this.props;
+        const { query } = this.state;
+
+        const filteredBooks = books.filter(book => 
+            book.title.toLowerCase().includes(query.toLowerCase()) || 
+            book.authors[0].toLowerCase().includes(query.toLowerCase())
+        );
 
         return (
             <div className="search-books">
@@ -36,15 +46,24 @@ export class Search extends React.Component {
                         <input 
                             type="text" 
                             placeholder="Search by title or author"
-                            value={this.state.query}
+                            value={query}
                             onChange={this.updateQuery}  
                         />
-                        {JSON.stringify(this.state.query)}
+                        {JSON.stringify(query)}
     
                     </div>
                 </div>
                 <div className="search-books-results">
-                    <ol className="books-grid"></ol>
+                    <ol className="books-grid">
+                        {filteredBooks.map(book => (
+                            <li key={book.id}>
+                                <Book 
+                                    book={book}
+                                    moveBook={this.moveBook}
+                                />
+                            </li>
+                        ))}
+                    </ol>
                 </div>
             </div>
         )

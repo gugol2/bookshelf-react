@@ -17,9 +17,7 @@ export class Book extends React.Component {
     }
 
     render() {
-        debugger;
         const { title, authors, imageLinks } = this.props.book;
-        console.log('authors', authors);
 
         return (
             <div className="book">

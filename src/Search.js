@@ -8,26 +8,29 @@ export class Search extends React.Component {
         books: []
     }
 
+    componentDidMount() {
+        this.timeout = null;
+    }
+
     updateQuery = (event) => {
         event.preventDefault();
+        const query = event.target.value;
 
-        const query = event.target.value.trim();
-        console.log("query", query);
+        this.setState(() => ({
+            query: query
+        }));
 
-        if(query !== '') {
-            BooksAPI.search(query).then(books => {
+        BooksAPI.search(query).then(books => {
+            if(books.error) {
+                this.setState(() => ({
+                    books: []
+                })); 
+            } else {
                 this.setState(() => ({
                     books,
-                    query: query
                 }));
-            });
-        } else {
-            this.setState(() => ({
-                books: [],
-                query: query
-            }));
-        }
-
+            }
+        })
     }
 
     moveBook = (book, shelf) => {
@@ -37,6 +40,7 @@ export class Search extends React.Component {
     render () {
         const { onToggleView } = this.props;
         const { query, books } = this.state;
+        console.log('books error', books);
 
         // const filteredBooks = books.filter(book => 
         //     book.title.toLowerCase().includes(query.toLowerCase()) || 

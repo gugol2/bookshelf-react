@@ -18,11 +18,6 @@ class BooksApp extends React.Component {
 
   componentDidMount () {
     BooksAPI.getAll().then((books) => {
-      // const shelves = books.reduce((acc, cur) => {
-      //   acc[cur.shelf] = [...acc[cur.shelf] || [], cur];
-      //   return acc
-      // }, {});
-
       this.setState(() => ({
         books
       }))
@@ -39,20 +34,19 @@ class BooksApp extends React.Component {
     console.log('book', book);
     console.log('shelf', shelf);
 
-    BooksAPI.update(book, shelf).then(shelvesUpdates => {
-      debugger;
+    BooksAPI.update(book, shelf).then(shelvesUpdated => {
+      console.log('shelvesUpdated', shelvesUpdated);
+
+      BooksAPI.get(book.id).then(book => {
+        this.setState((currentState) => ({
+          books: [...currentState.books.filter(b => b.id !== book.id), book]
+        }));
+      });
     });
-
-    BooksAPI.get(book.id).then(book => {
-      this.setState((currentState) => ({
-        books: [...currentState.books.filter(b => b.id !== book.id), book]
-      }));
-    })
-
   }
 
   render() {
-    console.log('shelves passed', this.state.shelves);
+    console.log('books passed', this.state.books);
 
     return (
       <div className="app">

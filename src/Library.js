@@ -9,7 +9,7 @@ export const Library = (props) => {
         return acc
     }, {});
 
-    console.log('shelves NOW is:', shelves);
+    console.log('shelves from books received:', shelves);
 
     const moveBook = (book, shelf) => {
         props.onMoveBook(book, shelf);

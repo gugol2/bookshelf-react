@@ -26,8 +26,10 @@ export class Search extends React.Component {
                     books: []
                 })); 
             } else {
+                const booksWithImages = books.filter(book => book.imageLinks);
+
                 this.setState(() => ({
-                    books,
+                    books: booksWithImages
                 }));
             }
         }).catch(error => {

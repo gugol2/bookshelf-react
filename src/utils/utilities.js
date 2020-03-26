@@ -11,3 +11,11 @@ export const addShelvedToSearchedBook = (booksFromSearch, booksFromProps) => {
 
     return newBooksWithImages;
 }
+
+export const filterOutBooksWithoutImages = (bookList) => {
+    return bookList.filter(book => book.imageLinks);
+} 
+
+export const orderBooksbyId = (bookCollection) => {
+    return bookCollection.sort((a,b) => a.id.localeCompare(b.id));
+}

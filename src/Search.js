@@ -23,8 +23,8 @@ export class Search extends React.Component {
         BooksAPI.search(query).then(booksSearched => {
             if(booksSearched.error) {
                 this.resetBookState();
+                console.log(`The error is: ${booksSearched.error}`);
             } else {
-                debugger;
                 const booksWithImages = this.filterOutBooksWithoutImages(booksSearched);
 
                 let newBooksWithImages = [];
@@ -41,8 +41,6 @@ export class Search extends React.Component {
                     booksSearched: newBooksWithImages.length ?  this.orderBooks(newBooksWithImages) : this.orderBooks(booksWithImages)
                 }));
             }
-        }).catch(error => {
-            this.resetBookState();
         })
     }
 

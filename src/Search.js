@@ -27,7 +27,7 @@ export class Search extends React.Component {
                 })); 
             } else {
                 debugger;
-                const booksWithImages = booksSearched.filter(book => book.imageLinks);
+                const booksWithImages = this.filterOutBooksWithoutImages(booksSearched);
 
                 let newBooksWithImages = [];
                 
@@ -49,6 +49,10 @@ export class Search extends React.Component {
             })); 
         })
     }
+
+    filterOutBooksWithoutImages = (bookList) => {
+        return bookList.filter(book => book.imageLinks);
+    } 
 
     moveBook = (book, shelf) => {
         this.props.onMoveBook(book, shelf);

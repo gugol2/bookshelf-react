@@ -19,6 +19,18 @@ const orderBooksbyName = (bookList) => {
     return bookList.sort((a,b) => a.title.localeCompare(b.title));
 }
 
+const orderBooksbyNameInsideShelves = (shelves) => {
+    const shelvesOrdered = {};
+
+    for (let [key, value] of Object.entries(shelves)) {
+        const newValue = [...value];
+
+        shelvesOrdered[key] = orderBooksbyName(newValue);
+    }
+
+    return shelvesOrdered;
+}
+
 export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
     const filteredBooks = filterOutBooksWithoutImages(booksFromSearch);
     const filteredAndMergedBooks = mergeBooksFromPropsWithSearchedBooks(filteredBooks, booksFromProps);
@@ -33,13 +45,7 @@ export const splitBooksInShelves = (bookList) => {
         return acc
     }, {});
     
-    const shelvesOrdered = {};
-
-    for (let [key, value] of Object.entries(shelves)) {
-        const newValue = [...value];
-
-        shelvesOrdered[key] = orderBooksbyName(newValue);
-    }
+    const shelvesOrdered = orderBooksbyNameInsideShelves(shelves);
 
     return shelvesOrdered;
 } 

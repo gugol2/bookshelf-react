@@ -1,16 +1,15 @@
 const addShelvedToSearchedBook = (booksFromSearch, booksFromProps) => {
-    let shelvedBooksWithImages = [];
-    let booksFromSearchCleaned = booksFromSearch;
-                
-    booksFromSearch.forEach(bwi => {
-        const found = booksFromProps.find(book => book.id === bwi.id);
-        if(found) {
-            booksFromSearchCleaned = booksFromSearchCleaned.filter(b => b.id !== bwi.id);
-            shelvedBooksWithImages.push(found);
+    
+    const shelvedBooks = booksFromSearch.reduce((acc, cur) => {
+        const found = booksFromProps.find(b => b.id === cur.id);
+        if(found){
+            return [...acc, found];
+        } else {
+            return [...acc, cur]
         }
-    });
+    }, []);
 
-    return [...booksFromSearchCleaned, ...shelvedBooksWithImages];
+    return shelvedBooks;
 }
 
 const filterOutBooksWithoutImages = (bookList) => {

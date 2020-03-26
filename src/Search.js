@@ -61,7 +61,6 @@ export class Search extends React.Component {
     render () {
         const { onToggleView } = this.props;
         const { query, booksSearched } = this.state;
-        console.log('booksReady', booksSearched);
 
         return (
             <div className="search-books">

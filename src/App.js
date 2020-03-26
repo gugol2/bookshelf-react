@@ -31,12 +31,7 @@ class BooksApp extends React.Component {
   }
 
   moveBook = (book, shelf) => {
-    console.log('book', book);
-    console.log('shelf', shelf);
-
     BooksAPI.update(book, shelf).then(shelvesUpdated => {
-      console.log('shelvesUpdated', shelvesUpdated);
-
       BooksAPI.get(book.id).then(book => {
         this.setState((currentState) => ({
           books: [...currentState.books.filter(b => b.id !== book.id), book]
@@ -46,8 +41,6 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log('books passed', this.state.books);
-
     return (
       <div className="app">
         {this.state.showSearchPage ? (

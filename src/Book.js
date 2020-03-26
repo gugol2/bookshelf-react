@@ -2,7 +2,7 @@ import React from 'react';
 
 export class Book extends React.Component {
     state = {
-        shelf: this.props.book.shelf
+        shelf: this.props.book.shelf || 'none'
     }
 
     changeShelf = (event) => {

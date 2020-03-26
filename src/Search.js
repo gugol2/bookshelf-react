@@ -38,12 +38,16 @@ export class Search extends React.Component {
                 });
                 
                 this.setState(() => ({
-                    booksSearched: newBooksWithImages.length ?  newBooksWithImages : booksWithImages
+                    booksSearched: newBooksWithImages.length ?  this.orderBooks(newBooksWithImages) : this.orderBooks(booksWithImages)
                 }));
             }
         }).catch(error => {
             this.resetBookState();
         })
+    }
+
+    orderBooks = (books) => {
+        return books.sort((a,b) => a.id.localeCompare(b.id));
     }
 
     resetBookState = () => {

@@ -81,7 +81,7 @@ export class Search extends React.Component {
                             value={query}
                             onChange={this.updateQuery}  
                         />
-                        {JSON.stringify(query)}
+                        {/* {JSON.stringify(query)} */}
     
                     </div>
                 </div>

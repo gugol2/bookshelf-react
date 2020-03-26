@@ -12,6 +12,15 @@ export class Search extends React.Component {
         this.timeout = null;
     }
 
+    debounce = (fn, wait) => {
+        return (...args) => {
+            const functionCall = () => fn.apply(this, args);
+        
+            clearTimeout(this.timeout);
+            this.timeout = setTimeout(functionCall, wait);
+        }
+    }
+
     updateQuery = (event) => {
         event.preventDefault();
         const query = event.target.value;
@@ -20,6 +29,10 @@ export class Search extends React.Component {
             query: query
         }));
 
+        this.debounce(this.updateSearch, 500)(query);
+    }
+
+    updateSearch = (query) => {
         BooksAPI.search(query).then(booksSearched => {
             if(booksSearched.error) {
                 this.resetBookState();

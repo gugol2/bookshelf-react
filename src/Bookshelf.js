@@ -6,7 +6,7 @@ export const Bookshelf = (props) => {
 
     const bookshelfNameReady = () => {
         const bookshelfNameReadyString = bookshelfName.split(/(?=[A-Z])/).join(' ');
-        return `${bookshelfNameReadyString.charAt(0).toUpperCase()}${bookshelfNameReadyString.slice(1)}`
+        return `${bookshelfNameReadyString.charAt(0).toUpperCase()}${bookshelfNameReadyString.slice(1)}`;
     }
 
     const moveBook = (book, shelf) => {

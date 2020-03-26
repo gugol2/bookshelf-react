@@ -33,5 +33,13 @@ export const splitBooksInShelves = (bookList) => {
         return acc
     }, {});
     
-    return shelves;
+    const shelvesOrdered = {};
+
+    for (let [key, value] of Object.entries(shelves)) {
+        const newValue = [...value];
+
+        shelvesOrdered[key] = orderBooksbyName(newValue);
+    }
+
+    return shelvesOrdered;
 } 

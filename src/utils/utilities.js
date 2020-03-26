@@ -25,5 +25,5 @@ export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
 
     const shelvedBooksWithImages = addShelvedToSearchedBook(booksWithImages, booksFromProps);
 
-    return shelvedBooksWithImages.length ? orderBooksbyId(shelvedBooksWithImages) : orderBooksbyId(booksWithImages);
+    return orderBooksbyId(shelvedBooksWithImages);
 }

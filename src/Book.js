@@ -9,13 +9,11 @@ export class Book extends React.Component {
         event.preventDefault();
         const newShelf = event.target.value;
 
-        if(newShelf !== 'none') {
-            this.setState(() => ({
-                shelf: newShelf
-            }));
+        this.setState(() => ({
+            shelf: newShelf
+        }));
 
-            this.props.moveBook(this.props.book, newShelf);
-        }
+        this.props.moveBook(this.props.book, newShelf);
     }
 
     render() {

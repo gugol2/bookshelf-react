@@ -2,14 +2,10 @@ import React from 'react';
 import { Bookshelf } from './Bookshelf';
 
 export const Library = (props) => {
-    console.log('books received', props.books);
-
     const shelves = props.books.reduce((acc, cur) => {
         acc[cur.shelf] = [...acc[cur.shelf] || [], cur];
         return acc
     }, {});
-
-    console.log('shelves from books received:', shelves);
 
     const moveBook = (book, shelf) => {
         props.onMoveBook(book, shelf);

@@ -15,15 +15,15 @@ const filterOutBooksWithoutImages = (bookList) => {
     return bookList.filter(book => book.imageLinks);
 } 
 
-const orderBooksbyId = (bookList) => {
-    return bookList.sort((a,b) => a.id.localeCompare(b.id));
+const orderBooksbyName = (bookList) => {
+    return bookList.sort((a,b) => a.title.localeCompare(b.title));
 }
 
 export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
     const filteredBooks = filterOutBooksWithoutImages(booksFromSearch);
     const filteredAndMergedBooks = mergeBooksFromPropsWithSearchedBooks(filteredBooks, booksFromProps);
 
-    return orderBooksbyId(filteredAndMergedBooks);
+    return orderBooksbyName(filteredAndMergedBooks);
 }
 
 export const splitBooksInShelves = (bookList) => {

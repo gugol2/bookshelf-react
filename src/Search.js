@@ -22,9 +22,7 @@ export class Search extends React.Component {
 
         BooksAPI.search(query).then(booksSearched => {
             if(booksSearched.error) {
-                this.setState(() => ({
-                    booksSearched: []
-                })); 
+                this.resetBookState();
             } else {
                 debugger;
                 const booksWithImages = this.filterOutBooksWithoutImages(booksSearched);
@@ -44,12 +42,16 @@ export class Search extends React.Component {
                 }));
             }
         }).catch(error => {
-            this.setState(() => ({
-                booksSearched: []
-            })); 
+            this.resetBookState();
         })
     }
 
+    resetBookState = () => {
+        this.setState(() => ({
+            booksSearched: []
+        })); 
+    }
+ 
     filterOutBooksWithoutImages = (bookList) => {
         return bookList.filter(book => book.imageLinks);
     } 

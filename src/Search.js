@@ -1,6 +1,7 @@
 import React from 'react';
 import { Book } from './Book';
 import * as BooksAPI from './BooksAPI';
+import { addShelvedToSearchedBook } from "./utils/utilities";
 
 export class Search extends React.Component {
     state = {
@@ -40,16 +41,8 @@ export class Search extends React.Component {
             } else {
                 const booksWithImages = this.filterOutBooksWithoutImages(booksSearched);
 
-                let newBooksWithImages = [];
-                
-                booksWithImages.forEach(bwi => {
-                    const found = this.props.books.find(book => book.id === bwi.id);
-                    if(found) {
-                        newBooksWithImages = booksWithImages.filter(b => b.id !== bwi.id);
-                        newBooksWithImages.push(found);
-                    }
-                });
-                
+                const newBooksWithImages = addShelvedToSearchedBook(booksWithImages, this.props.books);
+
                 this.setState(() => ({
                     booksSearched: newBooksWithImages.length ?  this.orderBooks(newBooksWithImages) : this.orderBooks(booksWithImages)
                 }));

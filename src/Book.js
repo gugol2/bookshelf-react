@@ -7,13 +7,15 @@ export class Book extends React.Component {
 
     changeShelf = (event) => {
         event.preventDefault();
-        const shelf = event.target.value;
+        const newShelf = event.target.value;
 
-        this.setState(() => ({
-            shelf
-        }))
+        if(newShelf !== 'none') {
+            this.setState(() => ({
+                shelf: newShelf
+            }));
 
-        this.props.moveBook(this.props.book, shelf);
+            this.props.moveBook(this.props.book, newShelf);
+        }
     }
 
     render() {

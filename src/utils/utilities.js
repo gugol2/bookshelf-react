@@ -25,3 +25,13 @@ export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
 
     return orderBooksbyId(filteredAndMergedBooks);
 }
+
+export const splitBooksInShelves = (bookList) => {
+    
+    const shelves = bookList.reduce((acc, cur) => {
+        acc[cur.shelf] = [...acc[cur.shelf] || [], cur];
+        return acc
+    }, {});
+    
+    return shelves;
+} 

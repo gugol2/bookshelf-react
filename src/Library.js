@@ -1,11 +1,9 @@
 import React from 'react';
 import { Bookshelf } from './Bookshelf';
+import { splitBooksInShelves } from "./utils/utilities";
 
 export const Library = (props) => {
-    const shelves = props.books.reduce((acc, cur) => {
-        acc[cur.shelf] = [...acc[cur.shelf] || [], cur];
-        return acc
-    }, {});
+    const shelves = splitBooksInShelves(props.books);
 
     const moveBook = (book, shelf) => {
         props.onMoveBook(book, shelf);

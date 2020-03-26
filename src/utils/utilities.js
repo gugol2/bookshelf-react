@@ -1,5 +1,4 @@
-const addShelvedToSearchedBook = (booksFromSearch, booksFromProps) => {
-    
+const mergeBooksFromPropsWithSearchedBooks = (booksFromSearch, booksFromProps) => {
     const shelvedBooks = booksFromSearch.reduce((acc, cur) => {
         const found = booksFromProps.find(b => b.id === cur.id);
         if(found){
@@ -21,9 +20,8 @@ const orderBooksbyId = (bookList) => {
 }
 
 export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
-    const booksWithImages = filterOutBooksWithoutImages(booksFromSearch);
+    const filteredBooks = filterOutBooksWithoutImages(booksFromSearch);
+    const filteredAndMergedBooks = mergeBooksFromPropsWithSearchedBooks(filteredBooks, booksFromProps);
 
-    const shelvedBooksWithImages = addShelvedToSearchedBook(booksWithImages, booksFromProps);
-
-    return orderBooksbyId(shelvedBooksWithImages);
+    return orderBooksbyId(filteredAndMergedBooks);
 }

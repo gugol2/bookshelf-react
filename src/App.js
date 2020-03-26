@@ -54,6 +54,7 @@ class BooksApp extends React.Component {
           <Search 
             onToggleView={this.onToggleView}
             onMoveBook={this.moveBook}
+            books={this.state.books}
           />
         ) : (
           <Library 

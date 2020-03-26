@@ -5,7 +5,7 @@ import * as BooksAPI from './BooksAPI';
 export class Search extends React.Component {
     state = {
         query: '',
-        books: []
+        booksSearched: []
     }
 
     componentDidMount() {
@@ -20,21 +20,32 @@ export class Search extends React.Component {
             query: query
         }));
 
-        BooksAPI.search(query).then(books => {
-            if(books.error) {
+        BooksAPI.search(query).then(booksSearched => {
+            if(booksSearched.error) {
                 this.setState(() => ({
-                    books: []
+                    booksSearched: []
                 })); 
             } else {
-                const booksWithImages = books.filter(book => book.imageLinks);
+                debugger;
+                const booksWithImages = booksSearched.filter(book => book.imageLinks);
 
+                let newBooksWithImages = [];
+                
+                booksWithImages.forEach(bwi => {
+                    const found = this.props.books.find(book => book.id === bwi.id);
+                    if(found) {
+                        newBooksWithImages = booksWithImages.filter(b => b.id !== bwi.id);
+                        newBooksWithImages.push(found);
+                    }
+                });
+                
                 this.setState(() => ({
-                    books: booksWithImages
+                    booksSearched: newBooksWithImages.length ?  newBooksWithImages : booksWithImages
                 }));
             }
         }).catch(error => {
             this.setState(() => ({
-                books: []
+                booksSearched: []
             })); 
         })
     }
@@ -45,13 +56,8 @@ export class Search extends React.Component {
 
     render () {
         const { onToggleView } = this.props;
-        const { query, books } = this.state;
-        console.log('books error', books);
-
-        // const filteredBooks = books.filter(book => 
-        //     book.title.toLowerCase().includes(query.toLowerCase()) || 
-        //     book.authors[0].toLowerCase().includes(query.toLowerCase())
-        // );
+        const { query, booksSearched } = this.state;
+        console.log('booksSearched', booksSearched);
 
         return (
             <div className="search-books">
@@ -78,7 +84,7 @@ export class Search extends React.Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {books.map(book => (
+                        {booksSearched.map(book => (
                             <li key={book.id}>
                                 <Book 
                                     book={book}

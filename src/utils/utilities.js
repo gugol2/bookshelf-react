@@ -1,21 +1,30 @@
-export const addShelvedToSearchedBook = (booksFromSearch, booksFromProps) => {
-    let newBooksWithImages = [];
+const addShelvedToSearchedBook = (booksFromSearch, booksFromProps) => {
+    let shelvedBooksWithImages = [];
+    let booksFromSearchCleaned = booksFromSearch;
                 
     booksFromSearch.forEach(bwi => {
         const found = booksFromProps.find(book => book.id === bwi.id);
         if(found) {
-            newBooksWithImages = booksFromSearch.filter(b => b.id !== bwi.id);
-            newBooksWithImages.push(found);
+            booksFromSearchCleaned = booksFromSearchCleaned.filter(b => b.id !== bwi.id);
+            shelvedBooksWithImages.push(found);
         }
     });
 
-    return newBooksWithImages;
+    return [...booksFromSearchCleaned, ...shelvedBooksWithImages];
 }
 
-export const filterOutBooksWithoutImages = (bookList) => {
+const filterOutBooksWithoutImages = (bookList) => {
     return bookList.filter(book => book.imageLinks);
 } 
 
-export const orderBooksbyId = (bookCollection) => {
-    return bookCollection.sort((a,b) => a.id.localeCompare(b.id));
+const orderBooksbyId = (bookList) => {
+    return bookList.sort((a,b) => a.id.localeCompare(b.id));
+}
+
+export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
+    const booksWithImages = filterOutBooksWithoutImages(booksFromSearch);
+
+    const shelvedBooksWithImages = addShelvedToSearchedBook(booksWithImages, booksFromProps);
+
+    return shelvedBooksWithImages.length ? orderBooksbyId(shelvedBooksWithImages) : orderBooksbyId(booksWithImages);
 }

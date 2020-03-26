@@ -1,7 +1,7 @@
 import React from 'react';
 import { Book } from './Book';
 import * as BooksAPI from './BooksAPI';
-import { addShelvedToSearchedBook, filterOutBooksWithoutImages, orderBooksbyId } from "./utils/utilities";
+import { reduceBooksSearched } from "./utils/utilities";
 
 export class Search extends React.Component {
     state = {
@@ -39,11 +39,7 @@ export class Search extends React.Component {
                 this.resetBookState();
                 console.log(`The error is: ${booksSearched.error}`);
             } else {
-                const booksWithImages = filterOutBooksWithoutImages(booksSearched);
-
-                const newBooksWithImages = addShelvedToSearchedBook(booksWithImages, this.props.books);
-
-                const booksReady = newBooksWithImages.length ? orderBooksbyId(newBooksWithImages) : orderBooksbyId(booksWithImages);
+                const booksReady = reduceBooksSearched(booksSearched, this.props.books);
 
                 this.setState(() => ({
                     booksSearched: booksReady
@@ -65,7 +61,7 @@ export class Search extends React.Component {
     render () {
         const { onToggleView } = this.props;
         const { query, booksSearched } = this.state;
-        console.log('booksSearched', booksSearched);
+        console.log('booksReady', booksSearched);
 
         return (
             <div className="search-books">

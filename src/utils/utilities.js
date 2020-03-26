@@ -23,9 +23,10 @@ const orderBooksbyNameInsideShelves = (shelves) => {
     const shelvesOrdered = {};
 
     for (let [key, value] of Object.entries(shelves)) {
-        const newValue = [...value];
-
-        shelvesOrdered[key] = orderBooksbyName(newValue);
+        if(key !== 'none') {
+            const newValue = [...value];
+            shelvesOrdered[key] = orderBooksbyName(newValue);
+        }
     }
 
     return shelvesOrdered;

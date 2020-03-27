@@ -45,7 +45,10 @@ export class Search extends React.Component {
                     
                     this.setState((currentState, props) => {
                         const booksReady = reduceBooksSearched(booksSearched, props.books);
-                        return { booksSearched: booksReady }
+                        return { 
+                            booksSearched: booksReady,
+                            errMessage: ''
+                        }
                     });
                 }
             });

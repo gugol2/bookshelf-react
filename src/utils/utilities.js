@@ -23,10 +23,8 @@ const orderBooksbyNameInsideShelves = (orderedShelvesByName) => {
     const shelvesOrdered = {};
 
     for (let [key, value] of orderedShelvesByName) {
-        if(key !== 'none') {
-            const newValue = [...value];
-            shelvesOrdered[key] = orderBooksbyName(newValue);
-        }
+        const newValue = [...value];
+        shelvesOrdered[key] = orderBooksbyName(newValue);
     }
 
     return shelvesOrdered;
@@ -45,8 +43,9 @@ export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
 }
 
 export const splitBooksInShelves = (bookList) => {
-    
-    const shelves = bookList.reduce((acc, cur) => {
+    const booksWithNoneShelf = bookList.filter(book => book.shelf !== 'none');
+
+    const shelves = booksWithNoneShelf.reduce((acc, cur) => {
         acc[cur.shelf] = [...acc[cur.shelf] || [], cur];
         return acc
     }, {});

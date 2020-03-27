@@ -1,14 +1,10 @@
 const mergeBooksFromPropsWithSearchedBooks = (booksFromSearch, booksFromProps) => {
-    const shelvedBooks = booksFromSearch.reduce((acc, cur) => {
-        const found = booksFromProps.find(b => b.id === cur.id);
-        if(found){
-            return [...acc, found];
-        } else {
-            return [...acc, cur]
-        }
-    }, []);
+    const shelvedBooks = booksFromSearch.map(searched => {
+        return booksFromProps.find(bfp => bfp.id === searched.id) || searched;
+    });
 
     return shelvedBooks;
+
 }
 
 const filterOutBooksWithoutImages = (bookList) => {

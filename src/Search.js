@@ -30,7 +30,11 @@ export class Search extends React.Component {
             query: query
         }));
 
-        this.debounce(this.updateSearch, 500)(query);
+        if(query) {
+            this.debounce(this.updateSearch, 500)(query);
+        } else {
+            this.resetBookState();
+        }
     }
 
     updateSearch = (query) => {

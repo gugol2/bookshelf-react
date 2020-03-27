@@ -33,7 +33,7 @@ export class Search extends React.Component {
             errMessage: ''
         }));
 
-        this.debounce(this.updateSearch, 500)(query);
+        this.debounce(this.updateSearch, 500)(this.state.query);
     }
 
     updateSearch = (query) => {

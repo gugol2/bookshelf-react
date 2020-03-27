@@ -31,26 +31,26 @@ export class Search extends React.Component {
             query: query
         }));
 
-        if(query) {
-            this.debounce(this.updateSearch, 500)(query);
-        } else {
-            this.resetBookState();
-        }
+        this.debounce(this.updateSearch, 500)(query);
     }
 
     updateSearch = (query) => {
-        BooksAPI.search(query).then(booksSearched => {
-            if(booksSearched.error) {
-                this.resetBookState();
-                console.log(`The error is: ${booksSearched.error}`);
-            } else {
-                const booksReady = reduceBooksSearched(booksSearched, this.props.books);
-
-                this.setState(() => ({
-                    booksSearched: booksReady
-                }));
-            }
-        })
+        if(query){
+            BooksAPI.search(query).then(booksSearched => {
+                if(booksSearched.error) {
+                    this.resetBookState();
+                    console.log(`The error is: ${booksSearched.error}`);
+                } else {
+                    const booksReady = reduceBooksSearched(booksSearched, this.props.books);
+    
+                    this.setState(() => ({
+                        booksSearched: booksReady
+                    }));
+                }
+            });
+        } else {
+            this.resetBookState();
+        }
     }
 
     resetBookState = () => {

@@ -28,12 +28,13 @@ export class Search extends React.Component {
         event.preventDefault();
         const query = event.target.value;
 
-        this.setState(() => ({
-            query: query.trim().length ? query : '',
-            errMessage: ''
-        }));
-
-        this.debounce(this.updateSearch, 500)(this.state.query);
+        this.setState(
+            () => ({
+                query: query.trim().length ? query : '',
+                errMessage: ''
+            }),
+            () => this.debounce(this.updateSearch, 500)(this.state.query)
+        );
     }
 
     updateSearch = (query) => {

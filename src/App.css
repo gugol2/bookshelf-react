@@ -1,8 +1,8 @@
 :root {
-  --main-bg-color: #2e7c31;
-  --book-shelf-changer-color: #60ac5d;
-  --open-search-button-color: #2e7d32;
-  --open-search-button-color-hover: rgb(0, 102, 0);
+  --main-bg-color: #ff9900;
+  --book-shelf-changer-color: #ffb84d;
+  --open-search-button-color: #e68a00;
+  --open-search-button-color-hover: #cc7a00;
 }
 
 html, body, .root {

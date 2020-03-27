@@ -118,6 +118,7 @@ body, .app {
   font-size: 0;
   border: none;
   outline: none;
+  background-color: white
 }
 
 button:active {

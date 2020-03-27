@@ -6,7 +6,8 @@ import { reduceBooksSearched } from "./utils/utilities";
 export class Search extends React.Component {
     state = {
         query: '',
-        booksSearched: []
+        booksSearched: [],
+        errMessage: ''
     }
 
     componentDidMount() {
@@ -54,7 +55,8 @@ export class Search extends React.Component {
 
     resetBookState = () => {
         this.setState(() => ({
-            booksSearched: []
+            booksSearched: [],
+            errMessage: 'No books found!'
         })); 
     }
 
@@ -64,7 +66,7 @@ export class Search extends React.Component {
 
     render () {
         const { onToggleView } = this.props;
-        const { query, booksSearched } = this.state;
+        const { query, booksSearched, errMessage } = this.state;
 
         return (
             <div className="search-books">
@@ -101,6 +103,9 @@ export class Search extends React.Component {
                         ))}
                     </ol>
                 </div>
+                {errMessage && (<div className='search-books-error'>
+                    {errMessage}
+                </div>)}
             </div>
         )
     }

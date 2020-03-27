@@ -196,3 +196,9 @@ button:active {
   text-align: center;
   font-size: 0.8em;
 }
+
+/* My custom css for the error message */
+.search-books-error {
+  text-align: center;
+  font-size: x-large;
+}

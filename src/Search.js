@@ -29,7 +29,7 @@ export class Search extends React.Component {
         const query = event.target.value;
 
         this.setState(() => ({
-            query: query,
+            query: query.trim().length ? query : '',
             errMessage: ''
         }));
 

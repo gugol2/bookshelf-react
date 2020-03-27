@@ -40,7 +40,7 @@ export class Search extends React.Component {
         if(query){
             BooksAPI.search(query).then(booksSearched => {
                 if(booksSearched.error) {
-                    this.resetBookState();
+                    this.resetBookState('No books found!');
                     console.log(`The error is: ${booksSearched.error}`);
                 } else {
                     
@@ -53,14 +53,14 @@ export class Search extends React.Component {
                 }
             });
         } else {
-            this.resetBookState();
+            this.resetBookState('Just type something and I will do my best!');
         }
     }
 
-    resetBookState = () => {
+    resetBookState = (msg) => {
         this.setState(() => ({
             booksSearched: [],
-            errMessage: 'No books found!'
+            errMessage: msg
         })); 
     }
 

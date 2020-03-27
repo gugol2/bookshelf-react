@@ -2,6 +2,7 @@ import React from 'react';
 import { Book } from './Book';
 import * as BooksAPI from './BooksAPI';
 import { reduceBooksSearched } from "./utils/utilities";
+import { Link } from 'react-router-dom';
 
 export class Search extends React.Component {
     state = {
@@ -65,13 +66,16 @@ export class Search extends React.Component {
     }
 
     render () {
-        const { onToggleView } = this.props;
         const { query, booksSearched, errMessage } = this.state;
 
         return (
             <div className="search-books">
                 <div className="search-books-bar">
-                    <button className="close-search" onClick={onToggleView}>Close</button>
+                    <Link 
+                        className="close-search" 
+                        to='/'
+                    >Close</Link>
+
                     <div className="search-books-input-wrapper">
                         {/*
                             NOTES: The search from BooksAPI is limited to a particular set of search terms.

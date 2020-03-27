@@ -42,11 +42,11 @@ export class Search extends React.Component {
                     this.resetBookState();
                     console.log(`The error is: ${booksSearched.error}`);
                 } else {
-                    const booksReady = reduceBooksSearched(booksSearched, this.props.books);
-    
-                    this.setState(() => ({
-                        booksSearched: booksReady
-                    }));
+                    
+                    this.setState((currentState, props) => {
+                        const booksReady = reduceBooksSearched(booksSearched, props.books);
+                        return { booksSearched: booksReady }
+                    });
                 }
             });
         } else {

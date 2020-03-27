@@ -1,14 +1,14 @@
 {
-  "main.css": "/bookshelf-react/static/css/main.60896406.chunk.css",
-  "main.js": "/bookshelf-react/static/js/main.8b60083e.chunk.js",
-  "main.js.map": "/bookshelf-react/static/js/main.8b60083e.chunk.js.map",
+  "main.css": "/bookshelf-react/static/css/main.ad31c0cf.chunk.css",
+  "main.js": "/bookshelf-react/static/js/main.7634700f.chunk.js",
+  "main.js.map": "/bookshelf-react/static/js/main.7634700f.chunk.js.map",
   "static/js/1.8104184f.chunk.js": "/bookshelf-react/static/js/1.8104184f.chunk.js",
   "static/js/1.8104184f.chunk.js.map": "/bookshelf-react/static/js/1.8104184f.chunk.js.map",
   "runtime~main.js": "/bookshelf-react/static/js/runtime~main.50716658.js",
   "runtime~main.js.map": "/bookshelf-react/static/js/runtime~main.50716658.js.map",
-  "static/css/main.60896406.chunk.css.map": "/bookshelf-react/static/css/main.60896406.chunk.css.map",
-  "static/media/App.css": "/bookshelf-react/static/media/add.bb9363b8.svg",
+  "static/css/main.ad31c0cf.chunk.css.map": "/bookshelf-react/static/css/main.ad31c0cf.chunk.css.map",
+  "static/media/App.css": "/bookshelf-react/static/media/arrow-drop-down.78c6f53b.svg",
   "index.html": "/bookshelf-react/index.html",
-  "precache-manifest.7aa826e3790e41bcc64ed3f7e0308ae3.js": "/bookshelf-react/precache-manifest.7aa826e3790e41bcc64ed3f7e0308ae3.js",
+  "precache-manifest.86b6c1bfbb7807f0d41ddd360c89d3be.js": "/bookshelf-react/precache-manifest.86b6c1bfbb7807f0d41ddd360c89d3be.js",
   "service-worker.js": "/bookshelf-react/service-worker.js"
 }

@@ -16,19 +16,19 @@ self.__precacheManifest = [
     "url": "/bookshelf-react/static/js/runtime~main.50716658.js"
   },
   {
-    "revision": "8a939cd6d01092fcb935",
-    "url": "/bookshelf-react/static/js/main.8a939cd6.chunk.js"
+    "revision": "8b60083ee97bab178c43",
+    "url": "/bookshelf-react/static/js/main.8b60083e.chunk.js"
   },
   {
-    "revision": "399139c1910aa747bb8e",
-    "url": "/bookshelf-react/static/js/1.399139c1.chunk.js"
+    "revision": "8104184f88eabcfce7b7",
+    "url": "/bookshelf-react/static/js/1.8104184f.chunk.js"
   },
   {
-    "revision": "8a939cd6d01092fcb935",
+    "revision": "8b60083ee97bab178c43",
     "url": "/bookshelf-react/static/css/main.60896406.chunk.css"
   },
   {
-    "revision": "1525c766fbbdb90883705ff231827847",
+    "revision": "a9bece738dc1988e3ad9c49046ff2b2f",
     "url": "/bookshelf-react/index.html"
   }
 ];

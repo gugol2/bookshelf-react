@@ -29,7 +29,8 @@ export class Search extends React.Component {
         const query = event.target.value;
 
         this.setState(() => ({
-            query: query
+            query: query,
+            errMessage: ''
         }));
 
         this.debounce(this.updateSearch, 500)(query);
@@ -46,8 +47,7 @@ export class Search extends React.Component {
                     this.setState((currentState, props) => {
                         const booksReady = reduceBooksSearched(booksSearched, props.books);
                         return { 
-                            booksSearched: booksReady,
-                            errMessage: ''
+                            booksSearched: booksReady
                         }
                     });
                 }

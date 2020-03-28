@@ -1,7 +1,7 @@
 import React from 'react';
 import { Book } from './Book';
 import * as BooksAPI from './BooksAPI';
-import { reduceBooksSearched } from "./utils/utilities";
+import { reduceBooksSearched, filterOutBooksWithoutImages } from "./utils/utilities";
 import { Link } from 'react-router-dom';
 
 export class Search extends React.Component {
@@ -45,12 +45,9 @@ export class Search extends React.Component {
                     console.log(`The error is: ${booksSearched.error}`);
                 } else {
                     
-                    this.setState((currentState, props) => {
-                        const booksReady = reduceBooksSearched(booksSearched, props.books);
-                        return { 
-                            booksSearched: booksReady
-                        }
-                    });
+                    this.setState(() => ({
+                        booksSearched: filterOutBooksWithoutImages(booksSearched)
+                    }));
                 }
             });
         } else {
@@ -71,6 +68,8 @@ export class Search extends React.Component {
 
     render () {
         const { query, booksSearched, errMessage } = this.state;
+        const { books } = this.props;
+        const booksSearchedWithShelves = reduceBooksSearched(booksSearched, books);
 
         return (
             <div className="search-books">
@@ -101,7 +100,7 @@ export class Search extends React.Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {booksSearched.map(book => (
+                        {booksSearchedWithShelves.map(book => (
                             <li key={book.id}>
                                 <Book 
                                     book={book}

@@ -7,7 +7,7 @@ const mergeBooksFromPropsWithSearchedBooks = (booksFromSearch, booksFromProps) =
 
 }
 
-const filterOutBooksWithoutImages = (bookList) => {
+export const filterOutBooksWithoutImages = (bookList) => {
     return bookList.filter(book => book.imageLinks);
 } 
 
@@ -32,8 +32,7 @@ const orderShelvesByName = (shelves) => {
 }
 
 export const reduceBooksSearched = (booksFromSearch, booksFromProps) => {
-    const filteredBooks = filterOutBooksWithoutImages(booksFromSearch);
-    const filteredAndMergedBooks = mergeBooksFromPropsWithSearchedBooks(filteredBooks, booksFromProps);
+    const filteredAndMergedBooks = mergeBooksFromPropsWithSearchedBooks(booksFromSearch, booksFromProps);
 
     return orderBooksbyName(filteredAndMergedBooks);
 }

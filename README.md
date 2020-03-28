@@ -1,6 +1,9 @@
 # Bookshelf React Project
 A Library with different bookshelves to keep a record of books being read, read and wanted to read.
 
+## Live demo:
+You can see a live demo [here](https://gugol2.github.io/bookshelf-react/)
+
 ## To get started right away:
 * install all project dependencies with `npm install`
 * start the development server with `npm start`

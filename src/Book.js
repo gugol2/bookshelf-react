@@ -1,23 +1,25 @@
 import React from 'react';
 
 export class Book extends React.Component {
-    state = {
-        shelf: this.props.book.shelf || 'none'
-    }
+    // state = {
+    //     shelf: this.props.book.shelf || 'none'
+    // }
 
     changeShelf = (event) => {
         event.preventDefault();
         const newShelf = event.target.value;
+        debugger;
 
-        this.setState(() => ({
-            shelf: newShelf
-        }));
+        // this.setState(() => ({
+        //     shelf: newShelf
+        // }));
 
         this.props.moveBook(this.props.book, newShelf);
     }
 
     render() {
         const { title, authors, imageLinks } = this.props.book;
+        const shelf = this.props.book.shelf || 'none';
 
         return (
             <div className="book">
@@ -27,7 +29,7 @@ export class Book extends React.Component {
                     style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}>
                 </div>
                 <div className="book-shelf-changer">
-                    <select value={this.state.shelf} onChange={this.changeShelf} >
+                    <select value={shelf} onChange={this.changeShelf} >
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

@@ -46,9 +46,9 @@ export class Search extends React.Component {
                 } else {
                     
                     this.setState((currentState, props) => {
-                        const booksReady = reduceBooksSearched(booksSearched, props.books);
+                        // const booksReady = reduceBooksSearched(booksSearched, props.books);
                         return { 
-                            booksSearched: booksReady
+                            booksSearched
                         }
                     });
                 }
@@ -71,6 +71,8 @@ export class Search extends React.Component {
 
     render () {
         const { query, booksSearched, errMessage } = this.state;
+        const { books } = this.props;
+        const booksReady = reduceBooksSearched(booksSearched, books);
 
         return (
             <div className="search-books">
@@ -101,7 +103,7 @@ export class Search extends React.Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {booksSearched.map(book => (
+                        {booksReady.map(book => (
                             <li key={book.id}>
                                 <Book 
                                     book={book}

@@ -45,13 +45,9 @@ export class Search extends React.Component {
                     console.log(`The error is: ${booksSearched.error}`);
                 } else {
                     
-                    this.setState((currentState, props) => {
-                        const filteredBooks = filterOutBooksWithoutImages(booksSearched);
-
-                        return { 
-                            booksSearched: filteredBooks
-                        }
-                    });
+                    this.setState(() => ({
+                        booksSearched: filterOutBooksWithoutImages(booksSearched)
+                    }));
                 }
             });
         } else {

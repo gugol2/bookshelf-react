@@ -10,29 +10,20 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [10.x]
-
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout
+      uses: actions/checkout@v1
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Build
+      run: |
+        npm install
+        npm run predeploy
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install Packages
-      run: npm install
-
-    - name: Checkout to-deploy-in-gh-pages
-      run: git checkout to-deploy-in-gh-pages
-
-    - name: Predeploy
-      run: npm run predeploy
-
-    - name: Deploy to GH Pages
-      run: npm run deploy
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build

@@ -1,46 +1,36 @@
 import React from 'react';
 
-export class Book extends React.Component {
-    // state = {
-    //     shelf: this.props.book.shelf || 'none'
-    // }
+export const Book = (props) => {
+    const { book, moveBook } = props;
+    const { title, authors, imageLinks } = book;
+    const shelf = book.shelf || 'none';
 
-    changeShelf = (event) => {
+    const changeShelf = (event) => {
         event.preventDefault();
         const newShelf = event.target.value;
-        debugger;
 
-        // this.setState(() => ({
-        //     shelf: newShelf
-        // }));
-
-        this.props.moveBook(this.props.book, newShelf);
+        moveBook(props.book, newShelf);
     }
 
-    render() {
-        const { title, authors, imageLinks } = this.props.book;
-        const shelf = this.props.book.shelf || 'none';
-
-        return (
-            <div className="book">
-                <div className="book-top">
-                <div 
-                    className="book-cover" 
-                    style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}>
-                </div>
-                <div className="book-shelf-changer">
-                    <select value={shelf} onChange={this.changeShelf} >
-                        <option value="move" disabled>Move to...</option>
-                        <option value="currentlyReading">Currently Reading</option>
-                        <option value="wantToRead">Want to Read</option>
-                        <option value="read">Read</option>
-                        <option value="none">None</option>
-                    </select>
-                </div>
-                </div>
-                <div className="book-title">{title}</div>
-                <div className="book-authors">{authors && authors.join(', ')}</div>
+    return (
+        <div className="book">
+            <div className="book-top">
+            <div 
+                className="book-cover" 
+                style={{ width: 128, height: 193, backgroundImage: `url(${imageLinks.thumbnail})` }}>
             </div>
-        )
-    }
+            <div className="book-shelf-changer">
+                <select value={shelf} onChange={changeShelf} >
+                    <option value="move" disabled>Move to...</option>
+                    <option value="currentlyReading">Currently Reading</option>
+                    <option value="wantToRead">Want to Read</option>
+                    <option value="read">Read</option>
+                    <option value="none">None</option>
+                </select>
+            </div>
+            </div>
+            <div className="book-title">{title}</div>
+            <div className="book-authors">{authors && authors.join(', ')}</div>
+        </div>
+    )
 }

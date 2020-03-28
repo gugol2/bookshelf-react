@@ -6,7 +6,6 @@ export const Book = (props) => {
     const shelf = book.shelf || 'none';
 
     const changeShelf = (event) => {
-        event.preventDefault();
         const newShelf = event.target.value;
 
         moveBook(props.book, newShelf);

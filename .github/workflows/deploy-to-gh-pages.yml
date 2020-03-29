@@ -16,21 +16,20 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
+      with:
+        ref: to-deploy-in-gh-pages branch
 
     - name: Install
       run: npm install
 
-    - name: Change to to-deploy-in-gh-pages branch
-      run: git checkout to-deploy-in-gh-pages
+    - name: Echo branch
+      run: echo running on branch ${GITHUB_REF##*/}
 
     - name: Merge master to the to to-deploy-in-gh-pages branch
       run: git merge master
 
     - name: Push to-deploy-in-gh-pages branch
       run: git push -u origin to-deploy-in-gh-pages branch
-
-    - name: Echo branch
-      run: echo running on branch ${GITHUB_REF##*/}
 
     - name: Predeploy
       run: npm run predeploy

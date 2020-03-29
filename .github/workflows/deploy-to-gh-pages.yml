@@ -28,6 +28,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   build-and-deploy:
+    needs: merge-branch
     runs-on: ubuntu-latest
     steps:
     - name: Checkout

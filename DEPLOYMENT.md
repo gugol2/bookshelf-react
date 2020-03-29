@@ -17,14 +17,18 @@
 
 6. Enjoy your new features in https://gugol2.github.io/bookshelf-react
 
-## Github CI/CD Action
-Just push the code you want deployed from the `to-deploy-in-gh-pages` branch
+## New Github CI/CD Action
+Just push a tag from the `master` branch
 and the Action in the file `deploy-to-gh-pages.yml` will take care of deploying it to gh-pages.
 
 So:
 
-1. Push the merge to origin:
+1. Push your tag to origin:
 
-    `git push -u origin to-deploy-in-gh-pages`
+    `git push origin <tag_name>`
+
+    Or configure your local repo to push the tags referenced by the commits that you are pushing with `git config --local push.followTags true`
+    
+    That way you only have to commit your changes, then create your tag and lastly do only one push `git push`
 
 2.  Enjoy your new features in https://gugol2.github.io/bookshelf-react

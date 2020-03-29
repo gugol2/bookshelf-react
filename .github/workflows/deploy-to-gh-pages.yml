@@ -17,7 +17,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        ref: to-deploy-in-gh-pages branch
+        ref: to-deploy-in-gh-pages
 
     - name: Install
       run: npm install

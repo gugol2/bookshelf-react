@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Merge to uat branch
+      - name: Merge to to-deploy-in-gh-pages branch
         uses: devmasx/merge-branch@v1.1.0
         with:
           type: now
@@ -30,8 +30,18 @@ jobs:
       - name: Echo branch
         run: echo running on branch ${GITHUB_REF##*/}
 
-      - name: pull to to-deploy-in-gh-pages branch
-        run: git pull
+      - name: Install
+        run: npm install
+
+      - name: Predeploy
+        run: npm run predeploy
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: build
 
   # build-and-deploy:
   #   runs-on: ubuntu-latest

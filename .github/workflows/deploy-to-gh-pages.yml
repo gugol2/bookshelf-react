@@ -11,6 +11,18 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  merge-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Merge to uat branch
+        uses: devmasx/merge-branch@v1.1.0
+        with:
+          type: now
+          target_branch: 'to-deploy-in-gh-pages'
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -19,17 +31,17 @@ jobs:
       with:
         ref: to-deploy-in-gh-pages
 
-    - name: Install
-      run: npm install
-
     - name: Echo branch
       run: echo running on branch ${GITHUB_REF##*/}
 
-    - name: Merge master to the to to-deploy-in-gh-pages branch
-      run: git merge master
+    - name: Install
+      run: npm install
+
+    # - name: Merge master to the to to-deploy-in-gh-pages branch
+    #   run: git merge master
 
     - name: Push to-deploy-in-gh-pages branch
-      run: git push -u origin to-deploy-in-gh-pages branch
+      run: git push -u origin to-deploy-in-gh-pages
 
     - name: Predeploy
       run: npm run predeploy

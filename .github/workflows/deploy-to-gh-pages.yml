@@ -31,14 +31,14 @@ jobs:
       with:
         ref: to-deploy-in-gh-pages
 
+    - name: pull to to-deploy-in-gh-pages branch
+      run: git pull
+
     - name: Echo branch
       run: echo running on branch ${GITHUB_REF##*/}
 
     - name: Install
       run: npm install
-
-    # - name: Merge master to the to to-deploy-in-gh-pages branch
-    #   run: git merge master
 
     - name: Push to-deploy-in-gh-pages branch
       run: git push -u origin to-deploy-in-gh-pages

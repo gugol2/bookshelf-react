@@ -27,48 +27,26 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-      - name: Echo branch
-        run: echo running on branch ${GITHUB_REF##*/}
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: to-deploy-in-gh-pages
 
-      - name: Install
-        run: npm install
+    - name: Echo branch
+      run: echo running on branch ${GITHUB_REF##*/}
 
-      - name: Predeploy
-        run: npm run predeploy
+    - name: Install
+      run: npm install
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
+    - name: Predeploy
+      run: npm run predeploy
 
-  # build-and-deploy:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout
-  #     uses: actions/checkout@v2
-  #     with:
-  #       ref: to-deploy-in-gh-pages
-
-  #   - name: Echo branch
-  #     run: echo running on branch ${GITHUB_REF##*/}
-
-  #   - name: Install
-  #     run: npm install
-
-  #   - name: pull to to-deploy-in-gh-pages branch
-  #     run: git pull
-
-  #   - name: Push to-deploy-in-gh-pages branch
-  #     run: git push -u origin to-deploy-in-gh-pages
-
-  #   - name: Predeploy
-  #     run: npm run predeploy
-
-  #   - name: Deploy
-  #     uses: JamesIves/github-pages-deploy-action@releases/v3
-  #     with:
-  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #       BRANCH: gh-pages
-  #       FOLDER: build
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build

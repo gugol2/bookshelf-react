@@ -11,7 +11,7 @@ export const Book = React.memo((props) => {
     const { book } = props;
     const { title, authors, imageLinks } = book;
     const shelf = book.shelf || 'none';
-    console.log('rendered book', title);
+    // console.log('rendered book', title);
 
     return (
         <div className="book">

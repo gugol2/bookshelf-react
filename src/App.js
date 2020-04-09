@@ -19,20 +19,34 @@ class BooksApp extends React.Component {
   }
 
   moveBook = (book, shelf) => {
-    const bookMoved = {
+    const moveBookOptimisticly = (bookToMove) => {
+
+      // If the book has shelf update the state 
+      if(bookToMove.shelf && bookToMove.shelf !== 'none') {
+        this.setState((currentState) => ({
+          books: [...currentState.books.filter(b => b.id !== bookToMove.id), bookToMove]
+        }));
+      } 
+      
+      else {
+        // If the book has NO shelf remove it from the state
+        this.setState((currentState) => ({
+          books: [...currentState.books.filter(b => b.id !== bookToMove.id)]
+        }));
+      }
+    }
+
+    const bookUpdated = {
       ...book,
       shelf
     };
-    
-    // Move the book optimisticly
-    this.setState((currentState) => ({
-      books: [...currentState.books.filter(b => b.id !== book.id), bookMoved]
-    }));
 
+   // Move the book to a new shelf optimisticly
+    moveBookOptimisticly(bookUpdated);
+
+    // If error move the book back to its previous shelf
     BooksAPI.update(book, shelf).catch(shelvesUpdated => {
-      this.setState((currentState) => ({
-        books: [...currentState.books.filter(b => b.id !== book.id), book]
-      }));
+      moveBookOptimisticly(book);
     });
   }
 

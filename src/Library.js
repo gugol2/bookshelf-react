@@ -3,11 +3,11 @@ import { Bookshelf } from './Bookshelf';
 import { splitBooksInShelves } from "./utils/utilities";
 import { Link } from 'react-router-dom';
 
-export const Library = (props) => {
-    const shelves = splitBooksInShelves(props.books);
+export const Library = ({ books, onMoveBook }) => {
+    const shelves = splitBooksInShelves(books);
 
     const moveBook = (book, shelf) => {
-        props.onMoveBook(book, shelf);
+        onMoveBook(book, shelf);
     }
     
     return (

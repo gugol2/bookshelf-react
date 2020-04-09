@@ -4,9 +4,9 @@
   "private": true,
   "homepage": "https://gugol2.github.io/bookshelf-react",
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "2.1.1"
   },

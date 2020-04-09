@@ -14,7 +14,7 @@ export const App = () => {
     });
   }, [])
 
-  const moveBook = (book, shelf) => {
+  const moveBook = async (book, shelf) => {
     const moveBookOptimisticly = (bookToMove) => {
 
       // If the book has shelf update the state 
@@ -36,10 +36,12 @@ export const App = () => {
    // Move the book to a new shelf optimisticly
     moveBookOptimisticly(bookUpdated);
 
-    // If error move the book back to its previous shelf
-    BooksAPI.update(book, shelf).catch(shelvesUpdated => {
+    try {
+      return await BooksAPI.update(book, shelf);
+    } catch (e) {
       moveBookOptimisticly(book);
-    });
+      return e;
+    }
   }
 
   return (

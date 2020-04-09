@@ -2,8 +2,8 @@ import React from 'react';
 
 export class Book extends React.PureComponent {
 
-    changeShelf = (event) => {
-        const newShelf = event.target.value;
+    changeShelf = ({target: {value: newShelf }}) => {
+        // pick event.target.value as newShelf with advanced ES6 destructurin
         
         this.props.moveBook(this.props.book, newShelf);
     }

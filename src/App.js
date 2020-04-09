@@ -1,18 +1,12 @@
-import React from 'react'
+import React from 'react';
 import * as BooksAPI from './BooksAPI';
-import './App.css'
+import './App.css';
 import { Search } from './Search';
 import { Library } from './Library';
 import { Route } from 'react-router-dom';
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
     books: []
   }
 
@@ -25,12 +19,20 @@ class BooksApp extends React.Component {
   }
 
   moveBook = (book, shelf) => {
-    BooksAPI.update(book, shelf).then(shelvesUpdated => {
-      BooksAPI.get(book.id).then(book => {
-        this.setState((currentState) => ({
-          books: [...currentState.books.filter(b => b.id !== book.id), book]
-        }));
-      });
+    const bookMoved = {
+      ...book,
+      shelf
+    };
+    
+    // Move the book optimisticly
+    this.setState((currentState) => ({
+      books: [...currentState.books.filter(b => b.id !== book.id), bookMoved]
+    }));
+
+    BooksAPI.update(book, shelf).catch(shelvesUpdated => {
+      this.setState((currentState) => ({
+        books: [...currentState.books.filter(b => b.id !== book.id), book]
+      }));
     });
   }
 

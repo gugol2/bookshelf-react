@@ -5,7 +5,7 @@ import { Search } from './Search';
 import { Library } from './Library';
 import { Route } from 'react-router-dom';
 
-function BooksApp () {
+export const App = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -60,5 +60,3 @@ function BooksApp () {
     </div>
   )
 }
-
-export default BooksApp

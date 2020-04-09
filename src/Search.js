@@ -11,24 +11,18 @@ export const Search = (props) =>  {
 
     useEffect(() => {
         // The callback from traditional this.setState goes here
-        const timeout = debounce(updateSearch, 500)(query);
+        const timeout = setTimeout(() => {
+            updateSearch(query)
+        }, 500);
         
         return () => {
-            // Every time the query changes React cleans up effects from the previous render before running the effects next time.
+            // Every time the query slice of the state changes 
+            // React cleans up effects from the previous render before running the effects next time.
             // So this function returned is called before running the next effect.
             clearTimeout(timeout);
         };
 
     }, [query]);
-
-    const debounce = (fn, wait) => {
-        return (...args) => {
-            const functionCall = () => fn.apply(this, args);
-        
-            // clearTimeout(timeout);
-            return setTimeout(functionCall, wait);
-        }
-    };
 
     const updateQuery = (event) => {
         event.preventDefault();

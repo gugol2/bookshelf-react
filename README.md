@@ -4,7 +4,7 @@ A Library with different bookshelves to keep a record of books being read, read 
 
 ## Live demo:
 
-You can see a live demo [here](https://gugol2.github.io/bookshelf-react/)
+This **static app** is deployed on GitHub Pages. You can see a live demo [here](https://gugol2.github.io/bookshelf-react/)
 
 ## To get started right away:
 
